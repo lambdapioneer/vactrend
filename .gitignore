@@ -1,0 +1,5 @@
+public/index.html
+public/vactrend.png
+*.csv
+env
+__pycache__
