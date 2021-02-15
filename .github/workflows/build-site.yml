@@ -3,7 +3,7 @@ on: push
 
 jobs:
   build-site:
-    name: Build the site
+    name: Update and deploy site
     runs-on: ubuntu-latest
 
     steps:
