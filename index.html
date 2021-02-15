@@ -21,7 +21,7 @@
                     trend.
                 </p>
                 <p class="text-muted">The data is sourced from the <a href="https://ourworldindata.org/">Our World in
-                        Data</a> project. Last update: {{last_update.strftime('%d %B %Y')}}.</p>
+                        Data</a> project. Last update: 15 February 2021.</p>
             </div>
         </div>
         <a href="vactrend.png">
@@ -30,21 +30,35 @@
         </a>
 
         <div class="row mt-4">
-            {% for country in countries %}
+            
             <div class="col-md-6 mb-4">
                 <div class="card">
-                    <div class="card-header">{{country.emoji}} {{country.name}}</div>
+                    <div class="card-header">🇬🇧 United Kingdom</div>
                     <div class="card-body">
-                        <h3 class="font-weight-bold" style="color: {{country.color}}">{{data_per_country[country.iso]['curr']}}</h3>
+                        <h3 class="font-weight-bold" style="color: #007bff">22.98</h3>
                         <p class="mt-n2">Vaccinations per 100 adults</p>
-                        <h3 class=" font-weight-bold">{{data_per_country[country.iso]['optimistic_date_100'].strftime('%d %B %Y')}}</h3>
+                        <h3 class=" font-weight-bold">17 April 2021</h3>
                         <p class="mt-n2">Earliest day: 100 vacc. per 100 adults</p>
-                        <h3 class=" font-weight-bold">{{data_per_country[country.iso]['optimistic_date_200'].strftime('%d %B %Y')}}</h3>
+                        <h3 class=" font-weight-bold">06 June 2021</h3>
                         <p class="mt-n2">Earliest day: 200 vacc. per 100 adults</p>
                     </div>
                 </div>
             </div>
-            {% endfor %}
+            
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">🇩🇪 Germany</div>
+                    <div class="card-body">
+                        <h3 class="font-weight-bold" style="color: #28a745">4.95</h3>
+                        <p class="mt-n2">Vaccinations per 100 adults</p>
+                        <h3 class=" font-weight-bold">27 September 2021</h3>
+                        <p class="mt-n2">Earliest day: 100 vacc. per 100 adults</p>
+                        <h3 class=" font-weight-bold">26 January 2022</h3>
+                        <p class="mt-n2">Earliest day: 200 vacc. per 100 adults</p>
+                    </div>
+                </div>
+            </div>
+            
         </div>
 
         <div class="row">
