@@ -2,7 +2,7 @@
 
 ![build-site](https://github.com/lambdapioneer/vactrend/workflows/build-site/badge.svg)
 
-This is a personal project for experimenting with GitHub Actions. As a side-effect, it creates a regularly updating website that shows historic data of Covid vaccinations along with some trend extrapolation.
+This is a personal project for experimenting with GitHub Actions. As a side-effect, it creates a regularly updating website that shows historic data of COVID vaccinations in the UK and Germany along with some trend extrapolation.
 
 Website: https://lambdapioneer.github.io/vactrend/
 
@@ -18,4 +18,4 @@ $ source env/bin/activate
 
 Screenshot:
 
-<img src="screenshot.png" width="512px" />
+<a href="screenshot.png"><img src="screenshot.png" width="640px" /></a>
