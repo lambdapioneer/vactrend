@@ -1,5 +1,9 @@
 name: build-site
-on: push
+on:
+  push:
+  schedule:
+    # Run every second hour
+    - cron:  '0 */2 * * *'
 
 jobs:
   build-site:
