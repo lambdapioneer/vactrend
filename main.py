@@ -116,7 +116,7 @@ def gen_html(df, fitted_curves, template_filename="index.html.jinja"):
     return template.render(
         countries=COUNTRIES,
         data_per_country=data_per_country,
-        last_update=datetime.now(pytz.timezone('Europe/Berlin'))
+        last_update=datetime.now(pytz.timezone('GMT'))
     )
 
 
