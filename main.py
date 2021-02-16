@@ -86,22 +86,29 @@ def gen_html(df, fitted_curves, template_filename="index.html.jinja"):
     template = jinja_env.get_template(template_filename)
 
     def get_curr(iso):
-        """Returns highest value for country"""
+        """Returns highest value for country."""
         d = df[df.iso_code == iso].dropna()
         return max(d['total_vaccinations_per_hundred'].values)
 
     def get_date_for_target(iso, target):
-        """Returns date when fitted curve passes target"""
+        """Returns date when fitted curve passes target."""
         curve = fitted_curves[iso]
         for date, y in zip(curve['x'], curve['y']):
             if y > target:
                 return date
         return MAX_DATE
 
+    def get_daily_rate(iso):
+        """Returns difference between the two most recent values."""
+        d = df[df.iso_code == iso].dropna()
+        tail = d['total_vaccinations_per_hundred'][-2:].values
+        return "+%.2f" % (tail[1] - tail[0])
+
     data_per_country = {c.iso: {} for c in COUNTRIES}
     for c in COUNTRIES:
         data_per_country[c.iso] = {
             'curr': get_curr(c.iso),
+            'daily_rate': get_daily_rate(c.iso),
             'optimistic_date_100': get_date_for_target(c.iso, 100),
             'optimistic_date_200': get_date_for_target(c.iso, 200),
         }

@@ -38,7 +38,7 @@
                 <div class="card">
                     <div class="card-header">{{country.emoji}} {{country.name}}</div>
                     <div class="card-body">
-                        <h3 class="font-weight-bold" style="color: {{country.color}}">{{data_per_country[country.iso]['curr']}}</h3>
+                        <h3 class="font-weight-bold" style="color: {{country.color}}">{{data_per_country[country.iso]['curr']}} <small>({{data_per_country[country.iso]['daily_rate']}}/d)</small></h3>
                         <p class="mt-n2">Vaccinations per 100 adults</p>
                         <h3 class=" font-weight-bold">{{data_per_country[country.iso]['optimistic_date_100'].strftime('%d %B %Y')}}</h3>
                         <p class="mt-n2">Earliest day: 100 vacc. per 100 adults</p>
