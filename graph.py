@@ -55,4 +55,4 @@ def create_graph(
         ncol=2, frameon=False)
 
     plt.tight_layout()
-    plt.savefig(output_filename, dpi=200)
+    plt.savefig(output_filename, dpi=240)
