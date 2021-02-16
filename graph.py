@@ -6,7 +6,7 @@ def create_graph(
         df, fitted_curves,
         start_date, end_date,
         countries,
-        output_filename='public/vactrend.png', scale=0.7):
+        output_filename='public/vactrend.png', scale=0.6):
 
     # Assume general 16:9 format and allow to `scale` font size
     fig, ax = plt.subplots(1, 1)
@@ -17,6 +17,7 @@ def create_graph(
     ax.set_xlabel("Date: January 2021 to July 2021", weight='bold')
     ax.set_ylim(0, 200)
     ax.set_ylabel("Total vaccinations per 100 adults", weight='bold')
+    ax.axhline(100, color='#000', lw=0.75)
 
     handles, labels = {}, {}
     for country in countries:
@@ -25,7 +26,7 @@ def create_graph(
         x = raw_df['date'].values
         y = raw_df['total_vaccinations_per_hundred'].values
         scatter_handle = ax.scatter(
-            x, y, marker='+', alpha=0.8, color=country.color)
+            x, y, marker='+', alpha=0.75, color=country.color)
 
         # draw fitted curves
         fitted_curve = fitted_curves[country.iso]
@@ -50,8 +51,8 @@ def create_graph(
     ax.legend(
         [x for hs in handles.values() for x in hs],
         [x for ls in labels.values() for x in ls],
-        loc='upper right', bbox_to_anchor=(1, 1.1),
-        ncol=4, frameon=False)
+        loc='upper right', bbox_to_anchor=(1, 1.16),
+        ncol=2, frameon=False)
 
     plt.tight_layout()
     plt.savefig(output_filename, dpi=200)
