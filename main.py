@@ -38,7 +38,7 @@ def load_data(filename="vaccinations.csv"):
 
 
 def calc_fitted_curves(df):
-    """Calculates fitted polynomials of degree three and two for each country.
+    """Calculates fitted polynomials of degree two and one for each country.
     Then returns extrapolated series from START_DATE to MAX_DATE.
     """
 
