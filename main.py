@@ -42,10 +42,10 @@ def calc_fitted_curves(df):
     Then returns extrapolated series from START_DATE to MAX_DATE.
     """
 
-    def prototype_function_d3(x, a, b, c):
+    def prototype_function_d2(x, a, b, c):
         return a * (x ** 2) + b * (x ** 1) + c
 
-    def prototype_function_d2(x, b, c):
+    def prototype_function_d1(x, b, c):
         return b * (x ** 1) + c
 
     fitted_curves = {c.iso: None for c in COUNTRIES}
@@ -54,11 +54,11 @@ def calc_fitted_curves(df):
         x = fitting_df['days'].values
         y = fitting_df['total_vaccinations_per_hundred'].values
 
-        # 3rd-degree polynomial accounting for increasing supply (optimistic case)
-        params_d3, _ = curve_fit(prototype_function_d3, x, y, (0.5, 0.5, 0.5))
+        # polynomial of degree 2 accounting for increasing supply (optimistic case)
+        params_d2, _ = curve_fit(prototype_function_d2, x, y, (0.5, 0.5, 0.5))
 
-        # 2nd-degree polynomial accounting only for the average rate up to date
-        params_d2, _ = curve_fit(prototype_function_d2, x, y, (0.5, 0.5))
+        # polynomial of degree 1 accounting only for the average rate up to date
+        params_d1, _ = curve_fit(prototype_function_d1, x, y, (0.5, 0.5))
 
         # Create series of extrapolates values for each country
         fitted_curve = {'x': [], 'y': [], 'y_base': []}
@@ -70,9 +70,9 @@ def calc_fitted_curves(df):
             day = (curr_date - START_DATE).days
 
             fitted_curve['y'].append(
-                prototype_function_d3(day, *params_d3))
-            fitted_curve['y_base'].append(
                 prototype_function_d2(day, *params_d2))
+            fitted_curve['y_base'].append(
+                prototype_function_d1(day, *params_d1))
 
             curr_date += timedelta(days=1)
     return fitted_curves
