@@ -23,7 +23,7 @@ COUNTRIES = [
 START_DATE = datetime.strptime('2021-01-01', '%Y-%m-%d')  # x-axis min
 END_DATE = datetime.strptime('2021-07-01', '%Y-%m-%d')  # x-axis max
 
-CURVE_FITTING_WINDOW = 31  # only include the last two weeks for curve fitting
+CURVE_FITTING_WINDOW = 31  # only include the last month for curve fitting
 MAX_DATE = datetime.strptime('2022-12-31', '%Y-%m-%d')  # extrapolation limit
 
 
