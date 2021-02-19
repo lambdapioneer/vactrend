@@ -109,6 +109,11 @@ def gen_html(df, fitted_curves, template_filename="index.html.jinja"):
         tail = d['total_vaccinations_per_hundred'][-2:].values
         return "+%.2f" % (tail[1] - tail[0])
 
+    def get_last_update(iso):
+        """Returns date of most recent entry."""
+        d = df[df.iso_code == iso].dropna()
+        return d['date'].max()
+
     data_per_country = {c.iso: {} for c in COUNTRIES}
     for c in COUNTRIES:
         data_per_country[c.iso] = {
@@ -116,6 +121,7 @@ def gen_html(df, fitted_curves, template_filename="index.html.jinja"):
             'daily_rate': get_daily_rate(c.iso),
             'optimistic_date_100': get_date_for_target(c.iso, 100),
             'optimistic_date_200': get_date_for_target(c.iso, 200),
+            'last_update': get_last_update(c.iso),
         }
 
     return template.render(

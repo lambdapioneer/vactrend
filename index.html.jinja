@@ -24,7 +24,7 @@
                     trend.
                 </p>
                 <p class="text-muted">The data is sourced from the <a href="https://ourworldindata.org/">Our World in
-                        Data</a> project. Last update: {{last_update.strftime('%d %B %Y, %H:%M')}} GMT.</p>
+                        Data</a> project. Last update: {{last_update.strftime('%d %B %Y')}}.</p>
             </div>
         </div>
         <a href="vactrend.png">
@@ -44,6 +44,7 @@
                         <p class="mt-n2">Earliest day: 100 vacc. per 100 adults</p>
                         <h3 class=" font-weight-bold">{{data_per_country[country.iso]['optimistic_date_200'].strftime('%d %B %Y')}}</h3>
                         <p class="mt-n2">Earliest day: 200 vacc. per 100 adults</p>
+                        <p class="card-text"><small class="text-muted">Last data from {{data_per_country[country.iso]['last_update'].strftime('%d %B %Y')}}.</small></p>
                     </div>
                 </div>
             </div>
