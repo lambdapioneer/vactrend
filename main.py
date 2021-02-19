@@ -22,6 +22,8 @@ COUNTRIES = [
 # Config date limits
 START_DATE = datetime.strptime('2021-01-01', '%Y-%m-%d')  # x-axis min
 END_DATE = datetime.strptime('2021-07-01', '%Y-%m-%d')  # x-axis max
+
+CURVE_FITTING_WINDOW = 31  # only include the last two weeks for curve fitting
 MAX_DATE = datetime.strptime('2022-12-31', '%Y-%m-%d')  # extrapolation limit
 
 
@@ -54,6 +56,9 @@ def calc_fitted_curves(df):
         x = fitting_df['days'].values
         y = fitting_df['total_vaccinations_per_hundred'].values
 
+        # only include most recent days
+        x, y = x[-CURVE_FITTING_WINDOW:], y[-CURVE_FITTING_WINDOW:]
+
         # polynomial of degree 2 accounting for increasing supply (optimistic case)
         params_d2, _ = curve_fit(prototype_function_d2, x, y, (0.5, 0.5, 0.5))
 
@@ -64,7 +69,7 @@ def calc_fitted_curves(df):
         fitted_curve = {'x': [], 'y': [], 'y_base': []}
         fitted_curves[iso] = fitted_curve
 
-        curr_date = START_DATE
+        curr_date = START_DATE + timedelta(days=int(x[0]))
         while curr_date <= MAX_DATE:
             fitted_curve['x'].append(curr_date)
             day = (curr_date - START_DATE).days
@@ -116,7 +121,8 @@ def gen_html(df, fitted_curves, template_filename="index.html.jinja"):
     return template.render(
         countries=COUNTRIES,
         data_per_country=data_per_country,
-        last_update=datetime.now(pytz.timezone('GMT'))
+        last_update=datetime.now(pytz.timezone('GMT')),
+        curve_fitting_window=CURVE_FITTING_WINDOW,
     )
 
 
