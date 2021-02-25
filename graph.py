@@ -40,7 +40,7 @@ def create_graph(
 
         handles[country.iso] = (scatter_handle, line_handle)
         labels[country.iso] = (
-            f"{country.name} (history)", f"{country.name} (optimistic)")
+            f"{country.name} (history)", f"{country.name} (dynamic)")
 
     ax.xaxis.set_major_locator(mdates.MonthLocator())
     ax.xaxis.set_major_formatter(mdates.DateFormatter("$1^{st}$ %B"))

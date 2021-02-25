@@ -98,8 +98,8 @@ def gen_html(df, fitted_curves, template_filename="index.html.jinja"):
     def get_date_for_target(iso, target):
         """Returns date when fitted curve passes target."""
         curve = fitted_curves[iso]
-        for date, y in zip(curve['x'], curve['y']):
-            if y > target:
+        for date, y, y_base in zip(curve['x'], curve['y'], curve['y_base']):
+            if y > target or y_base > target:
                 return date
         return MAX_DATE
 
